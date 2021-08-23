@@ -1,0 +1,19 @@
+// libs
+import React from "react";
+// components
+import PostItem from "../PostItem";
+import PostCommentForm from "../PostCommentForm";
+import PostCommentList from "../PostCommentList";
+
+const PostDetailContent = () => {
+  return (
+    <div className="ass1-section__list">
+      <PostItem />
+
+      <PostCommentForm />
+      <PostCommentList />
+    </div>
+  );
+};
+
+export default PostDetailContent;
