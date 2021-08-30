@@ -1,5 +1,6 @@
 // libs
-import { AppProps } from "next/App"; //Thang này có san cua next js rùi
+import React from "react";
+import { AppProps } from "next/app"; //Thang này có san cua next js rùi
 import Head from "next/head";
 import Footer from "../components/Footer";
 import { useEffect, useMemo, useState } from "react";

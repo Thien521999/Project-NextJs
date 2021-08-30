@@ -23,7 +23,12 @@ const CategoryHeader = () => {
     <nav>
       <ul className="ass1-header__menu">
         <li>
-          <span className="category">Danh mục</span>
+          <span
+            className="category"
+            style={{ display: "flex", marginTop: "13px", alignItems: "center", justifyContent: "center" }}
+          >
+            Danh mục
+          </span>
           <div className="ass1-header__nav">
             <div className="container">
               {listCategory.map((category) => (

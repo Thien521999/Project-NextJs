@@ -1,9 +1,9 @@
 // libs
 import React, { useState } from "react";
-import { GetServerSideProps } from "next";
-import { InferGetServerSidePropsType } from "next";
+// import { GetServerSideProps } from "next";
+// import { InferGetServerSidePropsType } from "next";
 import { useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
+// import { makeStyles } from "@material-ui/core";
 import { useRouter } from "next/router";
 // components
 import PostListItem from "../components/Posts/PostListItem";
