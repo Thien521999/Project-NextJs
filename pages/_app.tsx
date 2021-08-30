@@ -1,6 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 // libs
-import App, { AppContext, AppProps } from "next/App"; //Thang này có san cua next js rùi
+import { AppProps } from "next/App"; //Thang này có san cua next js rùi
 import Head from "next/head";
 import Footer from "../components/Footer";
 import { useEffect, useMemo, useState } from "react";
@@ -11,9 +10,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import Header from "../components/Header";
 // others
 import "../assets/css/style.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import store, { persistor } from "../app/store";
 import { LinearProgress, makeStyles } from "@material-ui/core";
-import useNotAuthentication from "../hooks/useNotAuthentication";
 
 const useStyles = makeStyles((theme) => ({
   progress: {
