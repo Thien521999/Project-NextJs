@@ -7,7 +7,7 @@ type PropsType = {
   form: any;
   name: any;
   label: any;
-  disabled: any;
+  disabled?: any;
 };
 
 const useStyles = makeStyles((theme) => ({

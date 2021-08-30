@@ -2,12 +2,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Avatar, Box, Button, Container, CssBaseline, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import Link from "next/link";
 // components
-import InputField from "../../../form-controls/InputField";
 import PasswordField from "../../../form-controls/PasswordField";
 
 const useStyles = makeStyles((theme) => ({

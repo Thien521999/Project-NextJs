@@ -3,7 +3,14 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const InputField = ({ form, name, label, disabled }) => {
+type InputField = {
+  form: any;
+  name: any;
+  label: any;
+  disabled?: any;
+};
+
+const InputField: React.FC<InputField> = ({ form, name, label, disabled }) => {
   const { errors } = form.formState;
   const hasError = errors[name];
 
