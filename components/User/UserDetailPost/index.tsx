@@ -1,241 +1,30 @@
 // libs
 import React from "react";
 import Image from "next/image";
+import Masonry from "react-masonry-component";
+// components
+import PostItem from "../../Posts/PostItem";
+// others
+import { PostType } from "../../../pages";
+import { useSelector } from "react-redux";
 
-const UserDetailPost = () => {
+type PropsType = {
+  userDetailPost: PostType[];
+  userDetailInfo: any;
+};
+
+const UserDetailPost: React.FC<PropsType> = ({ userDetailPost, userDetailInfo }) => {
+  const currentUser = useSelector((state: any) => state.user.current?.user);
+
+  if (!userDetailPost) return null;
+  const isCheckOwner = currentUser?.USERID === userDetailInfo?.USERID;
+
   return (
-    <div className="ass1-section__wrap row ass1-section__isotope-init">
-      {/*section*/}
-      {/* <div className="grid-sizer" /> */}
-      <div className="ass1-section__item col-lg-6">
-        <div className="ass1-section">
-          <div className="ass1-section__head">
-            <a
-              href="single_post.html"
-              className="ass1-section__avatar ass1-avatar"
-            >
-              <Image
-                src="/images/avatar-02.png"
-                alt=""
-                width="600"
-                height="600"
-              />
-            </a>
-            <div>
-              <a href="#" className="ass1-section__name">
-                Thanos
-              </a>
-              <span className="ass1-section__passed">2 giờ trước</span>
-            </div>
-          </div>
-          <div className="ass1-section__content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-              inventore obcaecati eum deserunt ut, aperiam quas! Placeat
-              blanditiis consequatur, deserunt facere iusto amet a ad suscipit
-              laudantium unde quidem perferendis!
-            </p>
-            <div className="ass1-section__image">
-              <a href="single_post.html">
-                <Image
-                  src="/images/microphone-1209816_1920.jpg"
-                  alt=""
-                  width="600"
-                  height="600"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="ass1-section__footer">
-            <a href="#" className="ass1-section__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-downvote ass1-btn-icon">
-              <i className="icon-Downvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-like ass1-btn-icon">
-              <i className="icon-Favorite_Full" />
-              <span>1,274</span>
-            </a>
-            <a href="#" className="ass1-section__btn-comment ass1-btn-icon">
-              <i className="icon-Comment_Full" />
-              <span>982</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="ass1-section__item col-lg-6">
-        <div className="ass1-section">
-          <div className="ass1-section__head">
-            <a
-              href="single_post.html"
-              className="ass1-section__avatar ass1-avatar"
-            >
-              <Image
-                src="/images/avatar-02.png"
-                alt=""
-                width="600"
-                height="600"
-              />
-            </a>
-            <div>
-              <a href="#" className="ass1-section__name">
-                Thanos
-              </a>
-              <span className="ass1-section__passed">2 giờ trước</span>
-            </div>
-          </div>
-          <div className="ass1-section__content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-              inventore obcaecati eum deserunt ut, aperiam quas! Placeat
-              blanditiis consequatur, deserunt facere iusto amet a ad suscipit
-              laudantium unde quidem perferendis!
-            </p>
-            <div className="ass1-section__image">
-              <a href="single_post.html">
-                <Image
-                  src="/images/blog-rating.png"
-                  alt=""
-                  width="600"
-                  height="600"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="ass1-section__footer">
-            <a href="#" className="ass1-section__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-downvote ass1-btn-icon">
-              <i className="icon-Downvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-like ass1-btn-icon">
-              <i className="icon-Favorite_Full" />
-              <span>1,274</span>
-            </a>
-            <a href="#" className="ass1-section__btn-comment ass1-btn-icon">
-              <i className="icon-Comment_Full" />
-              <span>982</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="ass1-section__item col-lg-6">
-        <div className="ass1-section">
-          <div className="ass1-section__head">
-            <a
-              href="single_post.html"
-              className="ass1-section__avatar ass1-avatar"
-            >
-              <Image
-                src="/images/avatar-02.png"
-                alt=""
-                width="600"
-                height="600"
-              />
-            </a>
-            <div>
-              <a href="#" className="ass1-section__name">
-                Thanos
-              </a>
-              <span className="ass1-section__passed">2 giờ trước</span>
-            </div>
-          </div>
-          <div className="ass1-section__content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-              inventore obcaecati eum deserunt ut, aperiam quas! Placeat
-              blanditiis consequatur, deserunt facere iusto amet a ad suscipit
-              laudantium unde quidem perferendis!
-            </p>
-            <div className="ass1-section__image">
-              <a href="single_post.html">
-                <Image
-                  src="/images/dress_owesom.jpg"
-                  alt=""
-                  width="600"
-                  height="600"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="ass1-section__footer">
-            <a href="#" className="ass1-section__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-downvote ass1-btn-icon">
-              <i className="icon-Downvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-like ass1-btn-icon">
-              <i className="icon-Favorite_Full" />
-              <span>1,274</span>
-            </a>
-            <a href="#" className="ass1-section__btn-comment ass1-btn-icon">
-              <i className="icon-Comment_Full" />
-              <span>982</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="ass1-section__item col-lg-6">
-        <div className="ass1-section">
-          <div className="ass1-section__head">
-            <a
-              href="single_post.html"
-              className="ass1-section__avatar ass1-avatar"
-            >
-              <Image
-                src="/images/avatar-02.png"
-                alt=""
-                width="600"
-                height="600"
-              />
-            </a>
-            <div>
-              <a href="#" className="ass1-section__name">
-                Thanos
-              </a>
-              <span className="ass1-section__passed">2 giờ trước</span>
-            </div>
-          </div>
-          <div className="ass1-section__content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-              inventore obcaecati eum deserunt ut, aperiam quas! Placeat
-              blanditiis consequatur, deserunt facere iusto amet a ad suscipit
-              laudantium unde quidem perferendis!
-            </p>
-            <div className="ass1-section__image">
-              <a href="single_post.html">
-                <Image
-                  src="/images/frog-1530803_960_720.jpg"
-                  alt=""
-                  width="600"
-                  height="600"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="ass1-section__footer">
-            <a href="#" className="ass1-section__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-downvote ass1-btn-icon">
-              <i className="icon-Downvote" />
-            </a>
-            <a href="#" className="ass1-section__btn-like ass1-btn-icon">
-              <i className="icon-Favorite_Full" />
-              <span>1,274</span>
-            </a>
-            <a href="#" className="ass1-section__btn-comment ass1-btn-icon">
-              <i className="icon-Comment_Full" />
-              <span>982</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Masonry className="ass1-section__wrap row ass1-section__isotope-init">
+      {userDetailPost?.map((post) => (
+        <PostItem key={post?.PID} post={post} customClass="col-lg-6" isOwner={isCheckOwner} />
+      ))}
+    </Masonry>
   );
 };
 

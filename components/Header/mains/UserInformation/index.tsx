@@ -1,31 +1,26 @@
 // libs
-import { Box, Button, IconButton, Link, MenuItem, Menu } from "@material-ui/core";
+import { Box, Button, IconButton, Menu, MenuItem } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
-import Image from "next/image";
+import { Typography } from "antd";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+// others
 import { logout } from "../../../Auth/userSlice";
-import { useRouter } from "next/router";
-
-const useStyles = makeStyles((theme) => ({
-  dialog: {
-    top: theme.spacing(2),
-  },
-}));
 
 const UserInformation = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [anchorEL, setAnchorEL] = useState(null);
 
+  const currentUser = useSelector((state: any) => state?.user?.current?.user);
   const loggedInUser = useSelector((state: any) => state?.user?.current?.user);
-  // console.log(loggedInUser);
 
-  const isLoggedIn = !!loggedInUser?.USERID; //neu có id tức là đã đănng nhập và nguoc lai
+  //neu có id tức là đã đăng nhập và nguoc lai
+  const isLoggedIn = !!loggedInUser?.USERID;
 
   const handleClickOpen = () => {
     router.push("/login");
@@ -37,6 +32,7 @@ const UserInformation = () => {
 
   const handleCloseMenu = () => {
     setAnchorEL(null);
+    router.push(`/users/${currentUser?.USERID}`);
   };
 
   const handleLogoutClick = () => {
@@ -48,27 +44,6 @@ const UserInformation = () => {
 
   return (
     <div className="wrapper-user">
-      {/* {isLoggedIn && (
-        <a className="user-header">
-          <span className="avatar">
-            <Image
-              src="/images/avatar-02.png"
-              alt="avatar"
-              width="20"
-              height="20"
-            />
-          </span>
-          <span className="email">{loggedInUser.email}</span>
-        </a>
-      )} */}
-
-      {/* <div className="logout">Logout</div> */}
-      {/* {!isLoggedIn && (
-        <Link href="/login">
-          <a className="ass1-header__btn-upload ass1-btn">Login</a>
-        </Link>
-      )} */}
-
       {/* Chưa đăng nhập */}
       {!isLoggedIn && (
         <Box component="span" className="icon-login">
@@ -80,9 +55,16 @@ const UserInformation = () => {
 
       {/*show Icon đã đăng nhập */}
       {isLoggedIn && (
-        <IconButton color="inherit" onClick={handleUserClick}>
-          <AccountCircle />
-        </IconButton>
+        <>
+          <Typography>
+            <Link href="/users/[userId]" as={`/users/${currentUser?.USERID}`}>
+              {currentUser?.fullname}
+            </Link>
+          </Typography>
+          <IconButton color="inherit" onClick={handleUserClick}>
+            <AccountCircle />
+          </IconButton>
+        </>
       )}
 
       {/* dialog - log out - My Account */}
@@ -101,9 +83,11 @@ const UserInformation = () => {
           horizontal: "right",
         }}
         getContentAnchorEl={null}
-        className={classes.dialog}
+        style={{ top: "20px" }}
       >
+        {/* <Link href="/users/[userId]" as={`/users/${currentUser?.USERID}`} passHref> */}
         <MenuItem onClick={handleCloseMenu}>MY ACCOUNT</MenuItem>
+        {/* </Link> */}
         <MenuItem onClick={handleLogoutClick}>LOGOUT</MenuItem>
       </Menu>
     </div>

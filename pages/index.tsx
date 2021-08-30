@@ -1,15 +1,19 @@
 // libs
+import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import { InferGetServerSidePropsType } from "next";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import postApi from "../api/postApi";
-import jwt_decode from "jwt-decode";
+import { makeStyles } from "@material-ui/core";
+import { useRouter } from "next/router";
 // components
-import HomeSideBar from "../components/HomeSideBar";
 import PostListItem from "../components/Posts/PostListItem";
+import HomeSideBar from "../components/Posts/HomeSideBar";
+// hooks
+import useNotAuthentication from "../hooks/useNotAuthentication";
 // styles
 import styles from "../styles/Home.module.scss";
+import postApi from "../api/postApi";
+import { Storekeys } from "../constants/Login";
 
 export type PostType = {
   USERID: string;
@@ -23,18 +27,21 @@ export type PostType = {
   count: string | null;
 };
 
-type HomeDataProps = {
-  listPosts: PostType[];
-  userPosts: PostType[];
-};
+// type HomeDataProps = {
+//   listPosts: PostType[];
+//   userPosts: PostType[];
+// };
 
-type HomeProps = React.FC<InferGetServerSidePropsType<typeof getServerSideProps>>;
+// type HomeProps = React.FC<InferGetServerSidePropsType<typeof getServerSideProps>>;
 
 const Home = () => {
-  const userId = useSelector((state: any) => state.user.current?.user?.USERID);
-  const token = useSelector((state: any) => state.user.current?.token);
-  // const userId = jwt_decode(token);
-  // console.log(userId);
+  useNotAuthentication();
+  const router = useRouter();
+
+  const userId = JSON.parse(localStorage.getItem(Storekeys.USER))?.USERID;
+
+  const [listPosts, setListPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -42,47 +49,51 @@ const Home = () => {
         pagesize: 3,
         currPage: 1,
       };
-      const listPostsRes = await postApi.getAll(params);
-      const listPosts = listPostsRes?.data?.posts;
+      const listPostsPros = postApi.getAll(params);
+      const userPostPros = postApi.get(userId);
 
-      const userPostRes = await postApi.get(userId);
-      console.log(userPostRes);
-
-      // Promise.all(listPostsRes, userPostRes).then(() => {
-      //   const listPosts = listPostsRes?.data?.posts;
-      //   const userPosts = userPostsPros?.data?.posts;
-      // });
-      // console.log(userPostRes);
+      const [listPostRes, userPostRes] = await Promise.all([listPostsPros, userPostPros]);
+      setListPosts(listPostRes?.data?.posts);
+      setUserPosts(userPostRes?.data?.posts);
     })();
   }, []);
+
+  const handleClick = (posts) => {
+    const newPost = posts || [];
+    setListPosts([...listPosts, ...newPost]);
+  };
 
   return (
     <div className="container">
       <div className="row">
-        <div className="col-lg-8">{/* <PostListItem listPosts={listPosts} /> */}</div>
-        <div className="col-lg-4">{/* <HomeSideBar userPosts={userPosts} /> */}</div>
+        <div className="col-lg-8">
+          <PostListItem listPosts={listPosts} handleClick={handleClick} />
+        </div>
+        <div className="col-lg-4">
+          <HomeSideBar userPosts={userPosts} />
+        </div>
       </div>
     </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<HomeDataProps> = async (context) => {
-  const params = {
-    pagesize: 3,
-    currPage: 1,
-  };
-  const listPostsRes = await postApi.getAll(params);
-  // console.log("api-----", listPostsRes?.data?.posts);
-  // const userPostRes = await postApi.get()
+// export const getServerSideProps: GetServerSideProps<HomeDataProps> = async (context) => {
+//   const params = {
+//     pagesize: 3,
+//     currPage: 1,
+//   };
+//   const listPostsRes = await postApi.getAll(params);
+//   // console.log("api-----", listPostsRes?.data?.posts);
+//   // const userPostRes = await postApi.get()
 
-  const props = {
-    listPosts: listPostsRes?.data?.posts || [],
-    userPosts: [],
-  };
+//   const props = {
+//     listPosts: listPostsRes?.data?.posts || [],
+//     userPosts: [],
+//   };
 
-  return {
-    props,
-  };
-};
+//   return {
+//     props,
+//   };
+// };
 
 export default Home;

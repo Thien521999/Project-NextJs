@@ -1,12 +1,21 @@
 // libs
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import viLocal from "dayjs/locale/vi";
+import Link from "next/link";
+import { Avatar } from "@material-ui/core";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
-const PostCommentList = () => {
+dayjs.extend(relativeTime);
+
+const PostCommentList = ({ detailPost, commentPost }) => {
   return (
     <div className="ass1-comments">
       <div className="ass1-comments__head">
-        <div className="ass1-comments__title">214 Bình luận</div>
+        <div className="ass1-comments__title">{commentPost?.length || 0} Bình luận</div>
         <div className="ass1-comments__options">
           <span>Sắp xếp theo:</span>
           <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
@@ -21,157 +30,34 @@ const PostCommentList = () => {
         </div>
       </div>
       {/*comment*/}
-      <div className="ass1-comments__section">
-        <a href="#" className="ass1-comments__avatar ass1-avatar">
-          <Image src="/images/avatar-02.png" alt="" width="100" height="100" />
-        </a>
-        <div className="ass1-comments__content">
-          <a href="#" className="ass1-comments__name">
-            Tây Tạng
-          </a>
-          <span className="ass1-comments__passed">12 giờ trước</span>
-          <p>
-            Scratch off globe, for when you want to wipe out any country that
-            displeases you but lack the weaponry to do so.
-          </p>
-          <div className="ass1-comments__info">
-            <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-              <span>901</span>
+      {commentPost.map((comment) => (
+        <div className="ass1-comments__section" key={comment.CID}>
+          <Link href="/users/[userId]" as={`/users/${comment?.USERID}`}>
+            <a className="ass1-comments__avatar ass1-avatar">
+              <Avatar variant="square" alt={comment.fullname} src={comment.profilepicture} />
             </a>
-            <a href="#" className="ass1-comments__btn-down ass1-btn-icon">
-              <i className="icon-Downvote" />
-              <span>36</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      {/*comment*/}
-      <div className="ass1-comments__section">
-        <a href="#" className="ass1-comments__avatar ass1-avatar">
-          <Image src="/images/avatar-11.png" alt="" width="100" height="100" />
-        </a>
-        <div className="ass1-comments__content">
-          <a href="#" className="ass1-comments__name">
-            Monster{" "}
-          </a>
-          <span className="ass1-comments__passed">3 giờ trước</span>
-          <a href="#" className="ass1-comments__btn-reply ass1-btn-icon">
-            <i className="icon-Reply">Trả lời</i>
-          </a>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio
-            dolores officiis, ducimus veritatis voluptatibus alias quos, magnam
-            sed non quo hic mollitia perferendis nostrum? Commodi reprehenderit
-            nesciunt saepe, libero et.
-          </p>
-          <div className="ass1-comments__info">
-            <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-              <span>901</span>
-            </a>
-            <a href="#" className="ass1-comments__btn-down ass1-btn-icon">
-              <i className="icon-Downvote" />
-              <span>36</span>
-            </a>
-            <a href="#" className="ass1-comments__btn-flag ass1-btn-icon">
-              <i className="icon-Flag" />
-            </a>
-          </div>
-          {/*comment*/}
-          <div className="ass1-comments__section">
-            <a href="#" className="ass1-comments__avatar ass1-avatar">
-              <Image
-                src="/images/avatar-10.png"
-                alt=""
-                width="100"
-                height="100"
-              />
-            </a>
-            <div className="ass1-comments__content">
-              <a href="#" className="ass1-comments__name">
-                Bầu trời
+          </Link>
+          <div className="ass1-comments__content">
+            <Link href="/users/[userId]" as={`/users/${comment?.USERID}`}>
+              <a className="ass1-comments__name">{comment.fullname}</a>
+            </Link>
+            <span style={{ marginLeft: "6px" }} className="ass1-comments__passed">
+              {dayjs(comment?.time_added).locale(viLocal).fromNow()}
+            </span>
+            <p>{comment.comment}</p>
+            <div className="ass1-comments__info">
+              <a className="ass1-comments__btn-upvote ass1-btn-icon">
+                <ArrowUpwardIcon />
+                <span>901</span>
               </a>
-              <span className="ass1-comments__passed">1 hour ago</span>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
-                debitis cumque nostrum blanditiis iusto amet illo
-                necessitatibus, ea quibusdam quidem quod, doloribus, voluptatem
-                est saepe nulla ex optio ut quas.
-              </p>
-              <div className="ass1-comments__info">
-                <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
-                  <i className="icon-Upvote" />
-                  <span>901</span>
-                </a>
-                <a href="#" className="ass1-comments__btn-down ass1-btn-icon">
-                  <i className="icon-Downvote" />
-                  <span>36</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          {/*comment*/}
-          <div className="ass1-comments__section">
-            <a href="#" className="ass1-comments__avatar ass1-avatar">
-              <Image
-                src="/images/avatar-10.png"
-                alt=""
-                width="100"
-                height="100"
-              />
-            </a>
-            <div className="ass1-comments__content">
-              <a href="#" className="ass1-comments__name">
-                Nguyễn A
+              <a className="ass1-comments__btn-down ass1-btn-icon">
+                <ArrowDownwardIcon />
+                <span>36</span>
               </a>
-              <span className="ass1-comments__passed">39 mins ago</span>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-                voluptatibus distinctio possimus qui, incidunt illum nesciunt
-                ad! Cum hic pariatur, velit, dignissimos ratione necessitatibus
-                natus neque sed esse, voluptatum ipsum.
-              </p>
-              <div className="ass1-comments__info">
-                <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
-                  <i className="icon-Upvote" />
-                  <span>256</span>
-                </a>
-                <a href="#" className="ass1-comments__btn-down ass1-btn-icon">
-                  <i className="icon-Downvote" />
-                  <span>12</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/*comment*/}
-      <div className="ass1-comments__section">
-        <a href="#" className="ass1-comments__avatar ass1-avatar">
-          <Image src="/images/avatar-14.png" alt="" width="100" height="100" />
-        </a>
-        <div className="ass1-comments__content">
-          <a href="#" className="ass1-comments__name">
-            Minh Minh
-          </a>
-          <span className="ass1-comments__passed">2 giờ trước</span>
-          <p>
-            Do not cook on the colorful fire!!! It is copper and will kill you
-            if you use for cooking!!!
-          </p>
-          <div className="ass1-comments__info">
-            <a href="#" className="ass1-comments__btn-upvote ass1-btn-icon">
-              <i className="icon-Upvote" />
-              <span>543</span>
-            </a>
-            <a href="#" className="ass1-comments__btn-down ass1-btn-icon">
-              <i className="icon-Downvote" />
-              <span>21</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

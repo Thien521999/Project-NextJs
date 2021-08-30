@@ -1,10 +1,11 @@
 //1.Setup userSlice
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useSnackbar } from "notistack";
 import userApi from "../../api/userApi";
 import { Storekeys } from "../../constants/Login";
 
 // First, create the thunk
-export const register = createAsyncThunk("user/register", async (payload) => {
+export const register = createAsyncThunk("user/register", async (payload:any) => {
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang register
   //call API to register
   const data = await userApi.register(payload); //payload:thong tin nhap tren form
@@ -15,10 +16,10 @@ export const register = createAsyncThunk("user/register", async (payload) => {
   return data?.data;
 });
 
-export const login = createAsyncThunk("user/login", async (payload) => {
+export const login = createAsyncThunk("user/login", async (payload:any) => {
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang login
   //call API to login
-  const data = await userApi.login(payload); //payload:thong tin nhap tren form
+  const data = await userApi.login(payload); //payload:thong tin hap tren form
   // console.log(data);
   //save data to local storage
   localStorage.setItem(Storekeys.TOKEN, data?.data?.token); //token
@@ -27,6 +28,19 @@ export const login = createAsyncThunk("user/login", async (payload) => {
   //(nhớ)return về  user data
   return data?.data;
 });
+
+export const changePassword = createAsyncThunk("user/changePassword", async (payload:any) => {
+  const data = await userApi.getChangePassword(payload);
+  console.log(data);
+  return data?.data;
+});
+
+export const updateProfile = createAsyncThunk("user/updateProfile", async (payload:any) =>{
+  const data = await userApi.updateProfile(payload);
+  console.log(data);
+  localStorage.setItem(Storekeys.USER, JSON.stringify(data?.data?.user));
+  return data?.data?.user;
+})
 
 const userSlice = createSlice({
   name: "user",
@@ -39,24 +53,34 @@ const userSlice = createSlice({
     logout(state) {
       localStorage.removeItem(Storekeys.TOKEN);
       localStorage.removeItem(Storekeys.USER);
-      //cap nhat state ve object rong
       state.current = {};
     },
   },
-  //Khi thunk này(regiter,login ở trên) thành công thì ta cần cập nhật dữ liệu vào trong redux state của mình ,ta sử dụng thằng extraReducers
-  extraReducers: {
-    //Async action
-    [register.fulfilled]: (state, action) => {
-      //[register.fulfilled]:thực chất là 1 chuỗi có dang như này( 'user/register/fullfilled' )
-      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên
-    },
-    [login.fulfilled]: (state, action) => {
-      state.current = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder.addCase(
+      register.fulfilled, (state, action) => {
+        state.current = action.payload;
+      },
+    )
+    builder.addCase(
+      login.fulfilled, (state, action) => {
+        state.current = action.payload;
+      },
+    )
+    builder.addCase(
+      changePassword.fulfilled, (state, action) => {
+        state.current = action.payload;
+      },
+    )
+    builder.addCase(
+      updateProfile.fulfilled, (state, action) => {
+        state.current = action.payload;
+      },
+    )
   },
 });
 
 const { actions, reducer } = userSlice;
 export const { logout } = actions;
 
-export default reducer; //default export
+export default reducer;

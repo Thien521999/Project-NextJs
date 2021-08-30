@@ -11,6 +11,7 @@ type userToken = {
 
 const useNotAuthentication = () => {
   const token = useSelector((state: any) => state.user?.current?.token);
+  // const token = localStorage.getItem(Storekeys?.TOKEN);
 
   useEffect(() => {
     if (!token) {

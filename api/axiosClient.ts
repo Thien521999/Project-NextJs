@@ -1,4 +1,6 @@
+// libs
 import axios from "axios";
+import { Storekeys } from "../constants/Login";
 
 const axiosClient = axios.create({
   baseURL: "https://api-meme-zendvn-01.herokuapp.com/api",
@@ -8,8 +10,12 @@ const axiosClient = axios.create({
 });
 
 // Add a request interceptor
-axios.interceptors.request.use(
-  function (config) {
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem(Storekeys?.TOKEN);
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   function (error) {
@@ -18,7 +24,7 @@ axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-axios.interceptors.response.use(
+axiosClient.interceptors.response.use(
   function (response) {
     return response;
   },
