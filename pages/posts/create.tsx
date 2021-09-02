@@ -50,13 +50,6 @@ const PostCreate = () => {
       const data: any = await dispatch(action);
       const resultAction = unwrapResult(data);
       router.push("/");
-
-      // const resultData = await postApi.createNewPost(postData);
-      // if (resultData?.data?.status === 200) {
-      //   enqueueSnackbar(resultData?.data?.message, { variant: "success" });
-      // } else {
-      //   enqueueSnackbar("Đăng ảnh thất bại", { variant: "error" });
-      // }
     })();
   };
 

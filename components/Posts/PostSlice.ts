@@ -11,6 +11,13 @@ export const createNewPost = createAsyncThunk("posts/createNewPost", async (payl
   return dataRes?.data?.data?.post;
 })
 
+export const editPost = createAsyncThunk("posts/editPost", async (payload:any) =>{
+  const dataRes = await postApi.editPost(payload);
+  console.log(dataRes?.data?.data?.post);
+//   localStorage.setItem(Storekeys.USER, JSON.stringify(data?.data?.user));
+  return dataRes?.data?.data?.post;
+})
+
 const postSlice = createSlice({
   name: "posts",
   initialState: {
@@ -20,6 +27,11 @@ const postSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
         createNewPost.fulfilled, (state, action) => {
+        state.postData = action.payload;
+      },
+    ),
+    builder.addCase(
+        editPost.fulfilled, (state, action) => {
         state.postData = action.payload;
       },
     )

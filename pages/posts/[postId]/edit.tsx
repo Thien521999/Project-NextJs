@@ -12,7 +12,7 @@ import { PostType } from "../..";
 import { TypeCategory } from ".";
 import PostDetailForm from "../../../components/Posts/PostDetailForm";
 import PostDetailSideBar from "../../../components/Posts/PostDetailSideBar";
-import { createNewPost } from "../../../components/Posts/PostSlice";
+import { createNewPost, editPost } from "../../../components/Posts/PostSlice";
 
 // const initialState = {
 //   url_image: "",
@@ -36,6 +36,7 @@ const PostEdit: PostEditProps = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const postId = router.query.postId;
 
   const [detailPost, setDetailPost] = useState({
     PID: "",
@@ -44,15 +45,13 @@ const PostEdit: PostEditProps = () => {
     status: "",
     time_added: "",
     url_image: "",
+    postid: "",
   });
-
   const [categoryPost, setCategoryPost] = useState([]);
-
-  console.log(detailPost);
-  console.log(categoryPost);
 
   const [postData, setPostData] = useState(() => {
     return {
+      postid: postId,
       url_image: detailPost?.url_image,
       post_content: detailPost?.post_content,
       category: categoryPost?.map((cate) => cate.tag_index),
@@ -62,9 +61,6 @@ const PostEdit: PostEditProps = () => {
       },
     };
   });
-  console.log(postData);
-
-  const postId = router.query.postId;
 
   useEffect(() => {
     (async () => {
@@ -72,11 +68,19 @@ const PostEdit: PostEditProps = () => {
 
       setDetailPost(postDetailRes?.data?.data?.post);
       setCategoryPost(postDetailRes?.data?.data?.categories);
+
+      setPostData({
+        url_image: postDetailRes?.data?.data?.post?.url_image,
+        post_content: postDetailRes?.data?.data?.post?.post_content,
+        postid: postDetailRes?.data?.data?.post?.PID,
+        category: postDetailRes?.data?.data?.categories?.map((cate) => cate.tag_index),
+        obj_image: {
+          file: null,
+          base64: "",
+        },
+      });
     })();
   }, []);
-
-  console.log(detailPost);
-  console.log(categoryPost);
 
   const onChangeCategory = (newCategory: string[]) => {
     setPostData({
@@ -92,7 +96,6 @@ const PostEdit: PostEditProps = () => {
         [key]: value,
         url_image: "",
       });
-      // return;
     }
     setPostData({
       ...postData,
@@ -102,9 +105,20 @@ const PostEdit: PostEditProps = () => {
 
   const handleSubmitPost = () => {
     (async () => {
-      const postDetailPros = postApi.getPostDetailByPostId(postId);
-      const action = createNewPost(postData);
+      const action = editPost(postData);
       const data: any = await dispatch(action);
+      const resultAction = unwrapResult(data);
+      console.log(resultAction);
+
+      setPostData({
+        ...postData,
+        url_image: postData.url_image,
+        obj_image: {
+          file: null,
+          base64: "",
+        },
+      });
+
       router.push("/");
     })();
   };

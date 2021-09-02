@@ -15,7 +15,6 @@ const Header = () => {
   const { defaultColor } = useContext(ThemeContext);
   const { isColor, light, dark } = defaultColor;
   const style = isColor ? light : dark;
-  console.log(style);
 
   return (
     <header>

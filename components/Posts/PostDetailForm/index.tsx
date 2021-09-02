@@ -17,8 +17,6 @@ type PropsType = {
 };
 
 const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_image, onChangeDetailForm }) => {
-  console.log(url_image);
-
   const inputFileEl = useRef(null);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -38,7 +36,7 @@ const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_imag
     inputFileEl.current.click();
   };
 
-  const handleChangeFile = (e) => {
+  const handleChangeFile = (e: any) => {
     const listFiles = e.target.files;
     if (listFiles.length === 0) return;
     const file = listFiles[0];
@@ -90,7 +88,6 @@ const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_imag
         <input ref={inputFileEl} onChange={handleChangeFile} style={{ display: "none" }} type="file" />
         <div className="ass1-section__image">
           <a>
-            {/* <Image src={imageUrl} alt="default" width={700} height={600} /> */}
             <Avatar style={{ width: "100%", height: "100%" }} variant="square" alt="Image" src={imageUrl} />
           </a>
         </div>

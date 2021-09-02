@@ -11,13 +11,11 @@ type PropTypes = {
 };
 
 const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, handleSubmitPost }) => {
-  console.log(category);
-
   const listCategory = useSelector((state: any) => state.category.dataCategory);
 
   const { defaultLanguage } = useContext(LanguageContext);
 
-  const handleCheck = (e) => {
+  const handleCheck = (e: any) => {
     const isCheck = e.target.checked; // true
     const value = e.target.value;
     const findIdx = category.findIndex((cateId) => cateId === value);
@@ -41,7 +39,13 @@ const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, ha
         <span style={{ display: "block", width: "100%", marginBottom: "10px" }}>{defaultLanguage.Choose_category}</span>
         {listCategory.map((cate) => (
           <label className="ass1-checkbox" key={cate.id}>
-            <input type="checkbox" name="category" value={cate.id} onChange={handleCheck} />
+            <input
+              type="checkbox"
+              name="category"
+              checked={category.indexOf(cate.id.toString()) !== -1}
+              value={cate.id}
+              onChange={handleCheck}
+            />
             <span />
             <p>{cate.text}</p>
           </label>

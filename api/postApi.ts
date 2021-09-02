@@ -10,6 +10,7 @@ type PostData = {
   url_image?: string;
   category?: string[];
   obj_image?: ObjImage;
+  postid?: string;
 }
 
 const postApi = {
@@ -33,10 +34,25 @@ const postApi = {
     data.append("post_content", postData.post_content);
     data.append("url_image", postData.url_image);
     data.append("category", postData.category.toString());
+    
     if (postData.obj_image) {
       data.append("obj_image", postData.obj_image as any);
     }
     const url = "/post/addNew.php";
+    return axiosClient.post(url, data)
+  },
+
+  editPost(postData: PostData) {
+    const data = new FormData();
+    data.append("post_content", postData.post_content);
+    data.append("url_image", postData.url_image);
+    data.append("category", postData.category.toString());
+    data.append("postid", postData.postid);
+
+    if (postData.obj_image) {
+      data.append("obj_image", postData.obj_image as any);
+    }
+    const url = "/post/edit.php";
     return axiosClient.post(url, data)
   },
 
