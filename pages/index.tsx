@@ -1,5 +1,5 @@
 // libs
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import { GetServerSideProps } from "next";
 // import { InferGetServerSidePropsType } from "next";
 import { useEffect } from "react";
@@ -14,6 +14,7 @@ import useNotAuthentication from "../hooks/useNotAuthentication";
 import styles from "../styles/Home.module.scss";
 import postApi from "../api/postApi";
 import { Storekeys } from "../constants/Login";
+import { ThemeContext } from "../context/ThemeContext";
 
 export type PostType = {
   USERID: string;
@@ -43,6 +44,11 @@ const Home = () => {
   const [listPosts, setListPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
+  const { defaultColor } = useContext(ThemeContext);
+  const { isColor, light, dark } = defaultColor;
+  const style = isColor ? light : dark;
+  console.log(style);
+
   useEffect(() => {
     (async () => {
       const params = {
@@ -64,7 +70,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={style}>
       <div className="row">
         <div className="col-lg-8">
           <PostListItem listPosts={listPosts} handleClick={handleClick} />

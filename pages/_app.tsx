@@ -1,5 +1,5 @@
 // libs
-import React from "react";
+import React, { useContext } from "react";
 import { AppProps } from "next/app"; //Thang này có san cua next js rùi
 import Head from "next/head";
 import Footer from "../components/Footer";
@@ -7,13 +7,17 @@ import { useEffect, useMemo, useState } from "react";
 import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 // components
 import Header from "../components/Header";
 // others
-import "../assets/css/style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../assets/css/style.scss";
 import store, { persistor } from "../app/store";
-import { LinearProgress, makeStyles } from "@material-ui/core";
+import { Button, LinearProgress, makeStyles } from "@material-ui/core";
+import LanguageProvider from "../context/LanguageContext";
+import ThemeProvider, { ThemeContext } from "../context/ThemeContext";
 
 const useStyles = makeStyles((theme) => ({
   progress: {
@@ -22,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     zIndex: 99999999999,
+  },
+  color: {
+    position: "fixed",
+    top: "680px",
   },
 }));
 
@@ -61,25 +69,29 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }}>
-          <div id="root">
-            <Head>
-              <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
-              <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-              <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
-              <meta name="keywords" content="HTML5 Template" />
-              <meta name="description" content="Social Network" />
-              <meta name="author" content="etheme.com" />
-              <link rel="icon" href="/favicon.ico" />
-              <title>Social Network</title>
-            </Head>
+          <ThemeProvider>
+            <LanguageProvider>
+              <div id="root">
+                <Head>
+                  <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+                  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+                  <meta name="keywords" content="HTML5 Template" />
+                  <meta name="description" content="Social Network" />
+                  <meta name="author" content="etheme.com" />
+                  <link rel="icon" href="/favicon.ico" />
+                  <title>Social Network</title>
+                </Head>
 
-            {loading && <LinearProgress className={classes.progress} />}
-            {!hiddenHeader && <Header />}
-            <main>
-              <Component {...pageProps} />
-            </main>
-            {!hiddenFooter && <Footer />}
-          </div>
+                {loading && <LinearProgress className={classes.progress} />}
+                {!hiddenHeader && <Header />}
+                <main>
+                  <Component {...pageProps} />
+                </main>
+                {!hiddenFooter && <Footer />}
+              </div>
+            </LanguageProvider>
+          </ThemeProvider>
         </SnackbarProvider>
       </PersistGate>
     </Provider>

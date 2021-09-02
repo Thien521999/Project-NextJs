@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #eef3f6;
+  // background-color: #eef3f6;
   font-size: 16px;
   color: #1e1633;
   line-height: 1.4;
@@ -52,9 +52,9 @@ img {
   height: auto;
   image-rendering: auto;
 }
-// a {
-//   color: #3482e2;
-// }
+a {
+  color: #3482e2;
+}
 a:hover,
 a:visited,
 a:active,
@@ -2185,7 +2185,7 @@ select.form-control:focus {
   position: relative;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #ffffff;
+  // background-color: #ffffff;
   border-bottom: solid 1px #e5e9ec;
   z-index: 100000;
   -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -2340,7 +2340,7 @@ select.form-control:focus {
 }
 @media only screen and (min-width: 1484px) {
   .ass1-header__search label input {
-    width: 432px;
+    // width: 432px;
   }
 }
 @media only screen and (max-width: 1483px) and (min-width: 769px) {
@@ -2363,8 +2363,8 @@ select.form-control:focus {
   font-size: 20px;
 }
 @media only screen and (min-width: 1484px) {
-  .ass1-header__menu,
-  .ass1-header__search {
+  // .ass1-header__search,
+  .ass1-header__menu {
     margin-right: 70px;
   }
 }

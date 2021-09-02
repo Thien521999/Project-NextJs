@@ -1,7 +1,8 @@
 // libs
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
+import { LanguageContext } from "../../../context/LanguageContext";
 
 type PropTypes = {
   category: string[];
@@ -10,7 +11,11 @@ type PropTypes = {
 };
 
 const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, handleSubmitPost }) => {
+  console.log(category);
+
   const listCategory = useSelector((state: any) => state.category.dataCategory);
+
+  const { defaultLanguage } = useContext(LanguageContext);
 
   const handleCheck = (e) => {
     const isCheck = e.target.checked; // true
@@ -29,11 +34,11 @@ const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, ha
     <aside className="ass1-aside ass1-aside__edit-post">
       <div>
         <button onClick={handleSubmitPost} className="ass1-btn">
-          Đăng bài
+          {defaultLanguage.Post}
         </button>
       </div>
       <div className="ass1-aside__edit-post-head">
-        <span style={{ display: "block", width: "100%", marginBottom: "10px" }}>Chọn danh mục</span>
+        <span style={{ display: "block", width: "100%", marginBottom: "10px" }}>{defaultLanguage.Choose_category}</span>
         {listCategory.map((cate) => (
           <label className="ass1-checkbox" key={cate.id}>
             <input type="checkbox" name="category" value={cate.id} onChange={handleCheck} />
@@ -43,7 +48,7 @@ const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, ha
         ))}
       </div>
       <div className="ass1-aside__get-code">
-        <p>Share Link</p>
+        <p>{defaultLanguage.Share_link}</p>
       </div>
       <div className="ass1-aside__social">
         <Link href="/">

@@ -1,6 +1,6 @@
 // libs
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Avatar, Button } from "@material-ui/core";
@@ -8,6 +8,7 @@ import BeenhereIcon from "@material-ui/icons/Beenhere";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
+import { LanguageContext } from "../../../context/LanguageContext";
 
 type PropsType = {
   userDetailInfo: any;
@@ -16,6 +17,8 @@ type PropsType = {
 
 const UserDetailInfo: React.FC<PropsType> = ({ userDetailInfo, postCount }) => {
   const currentUser = useSelector((state: any) => state.user.current?.user);
+
+  const { defaultLanguage } = useContext(LanguageContext);
 
   if (!userDetailInfo) return null;
 
@@ -53,12 +56,12 @@ const UserDetailInfo: React.FC<PropsType> = ({ userDetailInfo, postCount }) => {
               <>
                 <Link href="/users/password" passHref>
                   <Button variant="outlined" color="primary" style={{ marginRight: "15px" }}>
-                    Change password
+                    {defaultLanguage.Change_password}
                   </Button>
                 </Link>
                 <Link href="/users/profile" passHref>
                   <Button variant="outlined" color="primary">
-                    Profile
+                    {defaultLanguage.Profile}
                   </Button>
                 </Link>
               </>
@@ -71,15 +74,21 @@ const UserDetailInfo: React.FC<PropsType> = ({ userDetailInfo, postCount }) => {
           <div className="ass1-head-user__info-statistic">
             <div className="ass1-btn-icon">
               <PostAddIcon />
-              <span>Bài viết: {postCount}</span>
+              <span>
+                {defaultLanguage.Posts}: {postCount}
+              </span>
             </div>
             <div className="ass1-btn-icon">
               <PersonAddOutlinedIcon />
-              <span>Theo dõi: {userDetailInfo?.yourviewed}</span>
+              <span>
+                {defaultLanguage.Follow}: {userDetailInfo?.yourviewed}
+              </span>
             </div>
             <div className="ass1-btn-icon">
               <PersonOutlineOutlinedIcon />
-              <span>Đang theo dõi: {userDetailInfo?.youviewed}</span>
+              <span>
+                {defaultLanguage.Followed}: {userDetailInfo?.youviewed}
+              </span>
             </div>
             {/* <div class="ass1-btn-icon"><i class="icon-Upvote"></i><span>Up Vote: 999999</span></div> */}
           </div>

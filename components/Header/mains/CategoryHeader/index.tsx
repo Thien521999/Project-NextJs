@@ -1,14 +1,17 @@
 // libs
 import { unwrapResult } from "@reduxjs/toolkit";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { LanguageContext } from "../../../../context/LanguageContext";
 // others
 import { getCategory } from "../../headerSlice";
 
 const CategoryHeader = () => {
   const [listCategory, setListCategory] = useState([]);
   const dispatch = useDispatch();
+
+  const { defaultLanguage } = useContext(LanguageContext);
 
   useEffect(() => {
     (async () => {
@@ -25,9 +28,9 @@ const CategoryHeader = () => {
         <li>
           <span
             className="category"
-            style={{ display: "flex", marginTop: "13px", alignItems: "center", justifyContent: "center" }}
+            // style={{ display: "flex", marginTop: "13px", alignItems: "center", justifyContent: "center" }}
           >
-            Danh mục
+            {defaultLanguage.Category}
           </span>
           <div className="ass1-header__nav">
             <div className="container">

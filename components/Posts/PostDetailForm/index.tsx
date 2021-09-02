@@ -3,7 +3,8 @@ import { Avatar } from "@material-ui/core";
 import Image from "next/image";
 import Link from "next/link";
 import { useSnackbar } from "notistack";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { LanguageContext } from "../../../context/LanguageContext";
 
 type PropsType = {
   url_image: string;
@@ -16,8 +17,12 @@ type PropsType = {
 };
 
 const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_image, onChangeDetailForm }) => {
+  console.log(url_image);
+
   const inputFileEl = useRef(null);
   const { enqueueSnackbar } = useSnackbar();
+
+  const { defaultLanguage } = useContext(LanguageContext);
 
   const handleOnChange = (key: string) => (e) => {
     const value = e.target.value;
@@ -77,7 +82,7 @@ const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_imag
               value={post_content}
               onChange={handleOnChange("post_content")}
               className="form-control ttg-border-none"
-              placeholder="Mô tả ..."
+              placeholder={`${defaultLanguage.Description}...`}
               required
             />
           </div>
@@ -91,11 +96,11 @@ const PostDetailForm: React.FC<PropsType> = ({ url_image, post_content, obj_imag
         </div>
         <Link href="https://memeful.com/">
           <a className="ass1-btn ass1-btn-meme" target="_blank">
-            Chế ảnh từ meme
+            {defaultLanguage.Post_photos_from_meme}
           </a>
         </Link>
         <button onClick={handleChooseFile} className="ass1-btn ass1-btn-meme">
-          Đăng ảnh từ máy tính
+          {defaultLanguage.Post_pictures_from_the_computer}
         </button>
       </div>
     </div>

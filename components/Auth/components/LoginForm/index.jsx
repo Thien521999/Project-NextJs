@@ -1,3 +1,4 @@
+// libs
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Avatar,
@@ -8,20 +9,18 @@ import {
   Typography,
   CssBaseline,
   Paper,
-  TextField,
-  FormControlLabel,
-  Checkbox,
   Box,
 } from "@material-ui/core";
 import Link from "next/link";
 import { LockOutlined } from "@material-ui/icons";
-import InputField from "../../../form-controls/InputField";
-import PasswordField from "../../../form-controls/PasswordField";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// components
+import InputField from "../../../form-controls/InputField";
+import PasswordField from "../../../form-controls/PasswordField";
+import { LanguageContext } from "../../../../context/LanguageContext";
 
 const useStyles = makeStyles((theme) => ({
   roots: {
@@ -74,6 +73,8 @@ LoginForm.propTypes = {
 function LoginForm({ onSubmit }) {
   const classes = useStyles();
 
+  const { defaultLanguage } = useContext(LanguageContext);
+
   const schema = yup.object().shape({
     email: yup.string().required("Please enter your email").email("Please enter a valid email address."),
     password: yup.string().required("Please enter your password"),
@@ -108,7 +109,7 @@ function LoginForm({ onSubmit }) {
             <LockOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">
-            SIGN IN
+            {defaultLanguage.SIGN_IN}
           </Typography>
           <form className={classes.form} onSubmit={form.handleSubmit(handleSubmit)}>
             <InputField name="email" label="Email" form={form} />
@@ -123,12 +124,12 @@ function LoginForm({ onSubmit }) {
               fullWidth
               size="large"
             >
-              SIGN IN
+              {defaultLanguage.SIGN_IN}
             </Button>
           </form>
           <Link href="/register" passHref>
             <Box textAlign="center">
-              <Button color="primary">Do not have an account.Register here.</Button>
+              <Button color="primary">{defaultLanguage.Do_not_have_an_account_Register_here}.</Button>
             </Box>
           </Link>
         </div>

@@ -2,7 +2,8 @@
 import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { LanguageContext } from "../../../../context/LanguageContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,7 @@ const SearchHeader = () => {
   const classes = useStyles();
   const router = useRouter();
   const [queryStr, setQueryStr] = useState("");
+  const { defaultLanguage } = useContext(LanguageContext);
 
   const onChange = (e: any) => {
     setQueryStr(e.target.value);
@@ -42,7 +44,7 @@ const SearchHeader = () => {
             type="search"
             name="search-text"
             className="form-control"
-            placeholder="Nhập từ khóa ..."
+            placeholder={`${defaultLanguage.Enter_keyword}`}
           />
         </label>
       </form>

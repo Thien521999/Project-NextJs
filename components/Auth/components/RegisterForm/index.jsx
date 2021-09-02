@@ -3,13 +3,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Avatar, Box, Button, Container, CssBaseline, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import Link from "next/link";
 // components
 import InputField from "../../../form-controls/InputField";
 import PasswordField from "../../../form-controls/PasswordField";
+import { LanguageContext } from "../../../../context/LanguageContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -79,6 +80,8 @@ function RegisterForm({ onSubmit }) {
   //isSubmitting trong formState(react-hook-form)
   const { isSubmitting } = form.formState;
 
+  const { defaultLanguage } = useContext(LanguageContext);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -89,7 +92,7 @@ function RegisterForm({ onSubmit }) {
           <LockOutlined />
         </Avatar>
         <Typography component="h1" variant="h5">
-          SIGN UP
+          {defaultLanguage.SIGN_UP}
         </Typography>
 
         {/* form.handleSubmit la cua thang form, handleSubmit la cua minh viet */}
@@ -109,12 +112,12 @@ function RegisterForm({ onSubmit }) {
             fullWidth
             size="large"
           >
-            Create an account
+            {defaultLanguage.Create_an_account}
           </Button>
         </form>
         <Link href="/login" passHref>
           <Box textAlign="center">
-            <Button color="primary">Already have an account? Sign in</Button>
+            <Button color="primary">{defaultLanguage.Already_have_an_account_Sign_in}</Button>
           </Box>
         </Link>
       </div>

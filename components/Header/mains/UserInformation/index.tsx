@@ -4,8 +4,9 @@ import { AccountCircle } from "@material-ui/icons";
 import { Typography } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LanguageContext } from "../../../../context/LanguageContext";
 // others
 import { logout } from "../../../Auth/userSlice";
 
@@ -18,6 +19,8 @@ const UserInformation = () => {
 
   const currentUser = useSelector((state: any) => state?.user?.current?.user);
   const loggedInUser = useSelector((state: any) => state?.user?.current?.user);
+
+  const { defaultLanguage } = useContext(LanguageContext);
 
   //neu có id tức là đã đăng nhập và nguoc lai
   const isLoggedIn = !!loggedInUser?.USERID;
@@ -32,6 +35,10 @@ const UserInformation = () => {
 
   const handleCloseMenu = () => {
     setAnchorEL(null);
+    // router.push(`/users/${currentUser?.USERID}`);
+  };
+
+  const handleMove = () => {
     router.push(`/users/${currentUser?.USERID}`);
   };
 
@@ -48,7 +55,7 @@ const UserInformation = () => {
       {!isLoggedIn && (
         <Box component="span" className="icon-login">
           <Button color="inherit" onClick={handleClickOpen}>
-            LOGIN
+            {defaultLanguage.LOGIN}
           </Button>
         </Box>
       )}
@@ -86,9 +93,9 @@ const UserInformation = () => {
         style={{ top: "20px" }}
       >
         {/* <Link href="/users/[userId]" as={`/users/${currentUser?.USERID}`} passHref> */}
-        <MenuItem onClick={handleCloseMenu}>MY ACCOUNT</MenuItem>
+        <MenuItem onClick={handleMove}>{defaultLanguage.My_Account}</MenuItem>
         {/* </Link> */}
-        <MenuItem onClick={handleLogoutClick}>LOGOUT</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>{defaultLanguage.LOGOUT}</MenuItem>
       </Menu>
     </div>
   );

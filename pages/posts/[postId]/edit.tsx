@@ -1,7 +1,6 @@
 // libs
 import React, { useEffect, useState } from "react";
 import useNotAuthentication from "../../../hooks/useNotAuthentication";
-import { Storekeys } from "../../../constants/Login";
 import postApi from "../../../api/postApi";
 import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
@@ -46,9 +45,12 @@ const PostEdit: PostEditProps = () => {
     time_added: "",
     url_image: "",
   });
-  console.log(detailPost?.url_image);
 
   const [categoryPost, setCategoryPost] = useState([]);
+
+  console.log(detailPost);
+  console.log(categoryPost);
+
   const [postData, setPostData] = useState(() => {
     return {
       url_image: detailPost?.url_image,
@@ -60,20 +62,21 @@ const PostEdit: PostEditProps = () => {
       },
     };
   });
+  console.log(postData);
 
   const postId = router.query.postId;
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const postDetailRes = await postApi.getPostDetailByPostId(postId);
+  useEffect(() => {
+    (async () => {
+      const postDetailRes = await postApi.getPostDetailByPostId(postId);
 
-  //     setDetailPost(postDetailRes?.data?.data?.post);
-  //     setCategoryPost(postDetailRes?.data?.data?.categories);
-  //   })();
-  // }, []);
+      setDetailPost(postDetailRes?.data?.data?.post);
+      setCategoryPost(postDetailRes?.data?.data?.categories);
+    })();
+  }, []);
 
-  // console.log(detailPost);
-  // console.log(categoryPost);
+  console.log(detailPost);
+  console.log(categoryPost);
 
   const onChangeCategory = (newCategory: string[]) => {
     setPostData({
@@ -100,25 +103,11 @@ const PostEdit: PostEditProps = () => {
   const handleSubmitPost = () => {
     (async () => {
       const postDetailPros = postApi.getPostDetailByPostId(postId);
-
       const action = createNewPost(postData);
       const data: any = await dispatch(action);
       router.push("/");
     })();
   };
-
-  useEffect(() => {
-    (async () => {
-      const postDetailRes = await postApi.getPostDetailByPostId(postId);
-      console.log(postDetailRes);
-
-      setDetailPost(postDetailRes?.data?.data?.post);
-      setCategoryPost(postDetailRes?.data?.data?.categories);
-    })();
-  }, []);
-
-  console.log(detailPost);
-  console.log(categoryPost);
 
   return (
     <div className="container">
@@ -144,7 +133,7 @@ const PostEdit: PostEditProps = () => {
 };
 
 export const getServerSideProps: GetServerSideProps<PostEditDataProps> = async (context) => {
-  console.log("---", context.query.postId);
+  // console.log("---", context.query.postId);
   // const postId = context?.query?.postId;
   // const postDetailPros = await postApi.getPostDetailByPostId(postId);
   // console.log("api-----", postDetailPros);
