@@ -6,14 +6,14 @@ import postApi from "../../api/postApi";
 // First, create the thunk
 export const createNewPost = createAsyncThunk("posts/createNewPost", async (payload:any) =>{
   const dataRes = await postApi.createNewPost(payload);
-  console.log(dataRes?.data?.data?.post);
+  // console.log(dataRes?.data?.data?.post);
 //   localStorage.setItem(Storekeys.USER, JSON.stringify(data?.data?.user));
   return dataRes?.data?.data?.post;
 })
 
 export const editPost = createAsyncThunk("posts/editPost", async (payload:any) =>{
   const dataRes = await postApi.editPost(payload);
-  console.log(dataRes?.data?.data?.post);
+  // console.log(dataRes?.data?.data?.post);
 //   localStorage.setItem(Storekeys.USER, JSON.stringify(data?.data?.user));
   return dataRes?.data?.data?.post;
 })

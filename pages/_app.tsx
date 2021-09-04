@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   const [loading, setLoading] = useState(false);
   // useMomo chay trc khi render(xem no nhu la 1 constructor) => tra ve 1 value
   const hiddenFooter = useMemo(() => {
-    const excluded = ["/", "/posts/[postId]", "/login", "/register", "/users/password"];
+    const excluded = ["/", "/posts/[postId]", "/login", "/register", "/users/profile"];
     const currentRouter = pathname;
     // console.log(router);
     return excluded.indexOf(currentRouter) !== -1;

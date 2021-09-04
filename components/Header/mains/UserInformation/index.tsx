@@ -35,11 +35,11 @@ const UserInformation = () => {
 
   const handleCloseMenu = () => {
     setAnchorEL(null);
-    // router.push(`/users/${currentUser?.USERID}`);
   };
 
   const handleMove = () => {
     router.push(`/users/${currentUser?.USERID}`);
+    setAnchorEL(null);
   };
 
   const handleLogoutClick = () => {

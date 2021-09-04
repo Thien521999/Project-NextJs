@@ -3,17 +3,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 // components
-import PostItem from "../PostItem";
 import UserPost from "../UserPost";
-// import { PostType } from "../../pages";
+import { PostType } from "../../../pages";
 
-// type PropsType = {
-//   userPosts: PostType[];
-// };
+type PropsType = {
+  userPosts: PostType[];
+};
 
-const HomeSideBar = ({ userPosts }) => {
-  // console.log(userPosts);
-  const userInfo = useSelector((state: any) => state.user.current);
+const HomeSideBar: React.FC<PropsType> = ({ userPosts }) => {
+  const userInfo = useSelector((state: any) => state?.user?.current);
   return (
     <aside className="ass1-aside">
       <div className="ass1-content-head__t">

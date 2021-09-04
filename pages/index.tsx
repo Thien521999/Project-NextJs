@@ -11,7 +11,7 @@ import HomeSideBar from "../components/Posts/HomeSideBar";
 // hooks
 import useNotAuthentication from "../hooks/useNotAuthentication";
 // styles
-import styles from "../styles/Home.module.scss";
+// import styles from "../styles/Home.module.scss";
 import postApi from "../api/postApi";
 import { Storekeys } from "../constants/Login";
 import { ThemeContext } from "../context/ThemeContext";
@@ -47,6 +47,7 @@ const Home = () => {
   const { defaultColor } = useContext(ThemeContext);
   const { isColor, light, dark } = defaultColor;
   const style = isColor ? light : dark;
+
   useEffect(() => {
     (async () => {
       const params = {

@@ -52,7 +52,6 @@ export type valueType = {
 const ProfileForm: React.FC<PropsType> = ({ onSubmit }) => {
   const classes = useStyles();
   const currentUser = useSelector((state: any) => state?.user?.current?.user);
-  console.log(currentUser);
 
   const schema = yup.object().shape({
     oldPassword: yup.string().required("Please enter your password old"),
@@ -103,7 +102,7 @@ const ProfileForm: React.FC<PropsType> = ({ onSubmit }) => {
         {/* form.handleSubmit la cua thang form, handleSubmit la cua minh viet */}
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <InputField name="fullname" label="Full name" form={form} />
-          <SelectField name="gender" label="Gender" form={form} />
+          <SelectField name="gender" form={form} />
           <Button variant="contained" component="label">
             Upload File
             <input type="file" hidden />

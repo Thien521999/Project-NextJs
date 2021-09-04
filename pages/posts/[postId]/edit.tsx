@@ -108,7 +108,7 @@ const PostEdit: PostEditProps = () => {
       const action = editPost(postData);
       const data: any = await dispatch(action);
       const resultAction = unwrapResult(data);
-      console.log(resultAction);
+      // console.log(resultAction);
 
       setPostData({
         ...postData,

@@ -2,6 +2,10 @@
 import Link from "next/link";
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import GTranslateIcon from "@material-ui/icons/GTranslate";
+// others
 import { LanguageContext } from "../../../context/LanguageContext";
 
 type PropTypes = {
@@ -55,19 +59,19 @@ const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, ha
         <p>{defaultLanguage.Share_link}</p>
       </div>
       <div className="ass1-aside__social">
-        <Link href="/">
-          <a className="ass1-btn-social__facebook ass1-btn-social">
-            <i className="fa fa-facebook" aria-hidden="true" />
+        <Link href="https://www.facebook.com/">
+          <a className=" ass1-btn-social">
+            <FacebookIcon />
           </a>
         </Link>
-        <Link href="/">
-          <a className="ass1-btn-social__twitter ass1-btn-social">
-            <i className="fa fa-twitter" aria-hidden="true" />
+        <Link href="https://twitter.com/">
+          <a className=" ass1-btn-social">
+            <TwitterIcon />
           </a>
         </Link>
-        <Link href="/">
-          <a className="ass1-btn-social__google ass1-btn-social">
-            <i className="fa fa-google-plus" aria-hidden="true" />
+        <Link href="https://translate.google.com/">
+          <a className=" ass1-btn-social">
+            <GTranslateIcon />
           </a>
         </Link>
       </div>

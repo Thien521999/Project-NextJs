@@ -1,16 +1,18 @@
 // libs
 import React, { useState } from "react";
+import { Storekeys } from "../../constants/Login";
+import { useSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useRouter } from "next/router";
+// components
 import PostDetail from "./[postId]";
 import PostDetailForm from "../../components/Posts/PostDetailForm";
 import PostDetailSideBar from "../../components/Posts/PostDetailSideBar";
 import useNotAuthentication from "../../hooks/useNotAuthentication";
-import { Storekeys } from "../../constants/Login";
-import postApi from "../../api/postApi";
-import { useSnackbar } from "notistack";
 import { createNewPost } from "../../components/Posts/PostSlice";
-import { useDispatch } from "react-redux";
-import { unwrapResult } from "@reduxjs/toolkit";
-import { useRouter } from "next/router";
+// others
+import postApi from "../../api/postApi";
 
 const initialState = {
   url_image: "",

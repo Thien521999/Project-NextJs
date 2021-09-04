@@ -10,6 +10,11 @@ import * as yup from "yup";
 import PasswordField from "../../../form-controls/PasswordField";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#ffff",
+    borderRadius: "6px",
+    boxShadow: "0px 2px 6px -2px rgb(0 0 0 / 10%)",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -77,7 +82,7 @@ const ChangePasswordForm: React.FC<PropsType> = ({ onSubmit }) => {
   const { isSubmitting } = form.formState;
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.root}>
       <CssBaseline />
       <div className={classes.paper}>
         {/*đang submitting thi show linearProgress*/}
@@ -85,8 +90,8 @@ const ChangePasswordForm: React.FC<PropsType> = ({ onSubmit }) => {
         <Avatar className={classes.avatar}>
           <LockOutlined />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          SIGN UP
+        <Typography component="h2" variant="h5">
+          CHANGE PASSWORD
         </Typography>
 
         {/* form.handleSubmit la cua thang form, handleSubmit la cua minh viet */}
@@ -110,7 +115,7 @@ const ChangePasswordForm: React.FC<PropsType> = ({ onSubmit }) => {
         </form>
         <Link href="/" passHref>
           <Box textAlign="center">
-            <Button color="primary">Back to homepage</Button>
+            <Button color="primary">Back to home page</Button>
           </Box>
         </Link>
       </div>

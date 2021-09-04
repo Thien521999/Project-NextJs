@@ -31,13 +31,12 @@ export const login = createAsyncThunk("user/login", async (payload:any) => {
 
 export const changePassword = createAsyncThunk("user/changePassword", async (payload:any) => {
   const data = await userApi.getChangePassword(payload);
-  console.log(data);
   return data?.data;
 });
 
 export const updateProfile = createAsyncThunk("user/updateProfile", async (payload:any) =>{
   const data = await userApi.updateProfile(payload);
-  console.log(data);
+  
   localStorage.setItem(Storekeys.USER, JSON.stringify(data?.data?.user));
   return data?.data?.user;
 })

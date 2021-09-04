@@ -6,38 +6,33 @@ import { Controller } from "react-hook-form";
 type PropsType = {
   form: any;
   name: any;
-  label: any;
-  disabled?: any;
 };
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
 }));
 
-const SelectField: React.FC<PropsType> = ({ form, name, label, disabled }) => {
+const SelectField: React.FC<PropsType> = ({ form, name }) => {
   const classes = useStyles();
 
-  const [state, setState] = useState({
-    gender: "",
-  });
+  // const [state, setState] = useState({
+  //   gender: "",
+  //   name: "Nam",
+  // });
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
-  };
+  // const handleChange = (event) => {
+  //   const name = event.target.name;
+  //   setState({
+  //     ...state,
+  //     [name]: event.target.value,
+  //   });
+  // };
 
   return (
-    <FormControl className={classes.formControl} fullWidth>
-      <InputLabel htmlFor="age-native-simple">Gender</InputLabel>
+    <FormControl fullWidth margin="normal">
+      <InputLabel htmlFor="gender-native-simple">Gender</InputLabel>
       <Controller
         name={name}
         control={form.control}
@@ -45,11 +40,11 @@ const SelectField: React.FC<PropsType> = ({ form, name, label, disabled }) => {
           <Select
             {...field}
             native
-            value={state.gender}
-            onChange={handleChange}
+            // value={state.gender}
+            // onChange={handleChange}
             inputProps={{
               name: "gender",
-              id: "age-native-simple",
+              id: "gender-native-simple",
             }}
           >
             <option value="Name">Nam</option>

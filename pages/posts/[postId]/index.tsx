@@ -106,7 +106,7 @@ const PostDetail: PostDetailProps = () => {
 };
 
 export const getServerSideProps: GetServerSideProps<PostDetailDataProps> = async (context) => {
-  console.log("---", context.query.postId);
+  // console.log("---", context.query.postId);
   // const postId = context?.query?.postId;
   // const postDetailPros = await postApi.getPostDetailByPostId(postId);
   // console.log("api-----", postDetailPros);

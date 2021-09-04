@@ -21,14 +21,13 @@ const ChangePassword = () => {
       const action = changePassword(values);
       const resultAction: any = await dispatch(action);
       const data = unwrapResult(resultAction);
-      console.log(data);
 
       if (data?.status === 200) {
         enqueueSnackbar(data?.message, { variant: "success" });
         router.push("/login");
       }
     } catch (error) {
-      enqueueSnackbar("Mật khẩu cũ không đúng. Xin mời nhập lại", { variant: "error" });
+      enqueueSnackbar("Mật khẩu cũ không đúng. Vui lòng nhập lại", { variant: "error" });
     }
   };
   return <ChangePasswordForm onSubmit={handleSubmit} />;

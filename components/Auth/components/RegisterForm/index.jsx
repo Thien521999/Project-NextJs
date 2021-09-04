@@ -13,6 +13,10 @@ import PasswordField from "../../../form-controls/PasswordField";
 import { LanguageContext } from "../../../../context/LanguageContext";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#eef3f6",
+    borderRadius: "6px"
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -83,7 +87,7 @@ function RegisterForm({ onSubmit }) {
   const { defaultLanguage } = useContext(LanguageContext);
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.root}>
       <CssBaseline />
       <div className={classes.paper}>
         {/*đang submitting thi show linearProgress*/}

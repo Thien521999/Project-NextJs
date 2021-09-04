@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // phuong thuc nguoi dung gui len
   const method = req.method;
   const data = req.body; // data: nguoi dung gui len nam  trong req.body
-  console.log(req.headers.cookie);
+  // console.log(req.headers.cookie);
 
   if (method !== "POST") {
     res.statusCode = 200;
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
-  console.log("data Api login", data);
+  // console.log("data Api login", data);
 
   try {
     const resHeroku =await axios({
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     });
 
-    console.log("resHeroku ::", resHeroku);
+    // console.log("resHeroku ::", resHeroku);
     res.statusCode = 200;
     // res.setHeader("Content-type", "application/json");
     // res.setHeader("X-Token", "value");
