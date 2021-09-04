@@ -15,7 +15,7 @@ const Color = () => {
   const { handleChangeColor } = useContext(ThemeContext);
 
   return (
-    <Button variant="contained" size="small" color="secondary" onClick={handleChangeColor}>
+    <Button variant="contained" color="secondary" onClick={handleChangeColor}>
       Color
     </Button>
   );

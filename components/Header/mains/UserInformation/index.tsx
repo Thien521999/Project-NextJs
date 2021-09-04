@@ -63,11 +63,11 @@ const UserInformation = () => {
       {/*show Icon đã đăng nhập */}
       {isLoggedIn && (
         <>
-          <Typography>
+          {/* <Typography>
             <Link href="/users/[userId]" as={`/users/${currentUser?.USERID}`}>
               {currentUser?.fullname}
             </Link>
-          </Typography>
+          </Typography> */}
           <IconButton color="inherit" onClick={handleUserClick}>
             <AccountCircle />
           </IconButton>

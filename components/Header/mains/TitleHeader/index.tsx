@@ -6,7 +6,7 @@ import React from "react";
 const TitleHeader = () => {
   return (
     <Link href="/" passHref>
-      <Typography variant="h5" component="h4" color="primary" style={{ cursor: "pointer" }}>
+      <Typography variant="h5" component="h4" color="primary" style={{ cursor: "pointer", color: "#fff" }}>
         SocialNet
       </Typography>
     </Link>

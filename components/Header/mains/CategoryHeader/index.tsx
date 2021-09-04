@@ -34,15 +34,15 @@ const CategoryHeader = () => {
           </span>
           <div className="ass1-header__nav">
             <div className="container">
-              {listCategory.map((category) => (
-                <ul key={category?.id}>
-                  <li>
+              <ul>
+                {listCategory.map((category) => (
+                  <li key={category?.id}>
                     <Link href="/categories/[cateId]" as={`/categories/${category?.id}`}>
                       <a>{category?.text}</a>
                     </Link>
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
             </div>
             <div className="ass1-header__menu-transition" />
           </div>
