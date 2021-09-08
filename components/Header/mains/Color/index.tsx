@@ -1,22 +1,17 @@
 // libs
 import { Button, makeStyles } from "@material-ui/core";
 import React, { useContext } from "react";
+// others
+import { LanguageContext } from "../../../../context/LanguageContext";
 import { ThemeContext } from "../../../../context/ThemeContext";
 
-// const useStyles = makeStyles((theme) => ({
-//   color: {
-//     position: "fixed",
-//     top: "680px",
-//   },
-// }));
-
 const Color = () => {
-  //   const classes = useStyles();
   const { handleChangeColor } = useContext(ThemeContext);
+  const { defaultLanguage } = useContext(LanguageContext);
 
   return (
-    <Button variant="contained" color="secondary" onClick={handleChangeColor}>
-      Color
+    <Button color="inherit" onClick={handleChangeColor}>
+      {defaultLanguage.COLOR}
     </Button>
   );
 };

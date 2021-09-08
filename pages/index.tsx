@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 // components
 import PostListItem from "../components/Posts/PostListItem";
 import HomeSideBar from "../components/Posts/HomeSideBar";
+import PostListItemSkeleton from "../components/Posts/PostListItemSkeleton";
+import HomeSideBarSkeleton from "../components/Posts/HomeSideBarSkeleton";
 // hooks
 import useNotAuthentication from "../hooks/useNotAuthentication";
 // styles
@@ -41,6 +43,9 @@ const Home = () => {
 
   const userId = JSON.parse(localStorage.getItem(Storekeys.USER))?.USERID;
 
+  const [loadingListPost, setLoadingListPost] = useState(true);
+  const [loadingHomeSideBar, setLoadingHomeSideBar] = useState(true);
+
   const [listPosts, setListPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
@@ -60,6 +65,9 @@ const Home = () => {
       const [listPostRes, userPostRes] = await Promise.all([listPostsPros, userPostPros]);
       setListPosts(listPostRes?.data?.posts);
       setUserPosts(userPostRes?.data?.posts);
+
+      setLoadingListPost(false);
+      setLoadingHomeSideBar(false);
     })();
   }, []);
 
@@ -72,10 +80,14 @@ const Home = () => {
     <div className="container" style={style}>
       <div className="row">
         <div className="col-lg-8">
-          <PostListItem listPosts={listPosts} handleClick={handleClick} />
+          {loadingListPost ? (
+            <PostListItemSkeleton length={3} />
+          ) : (
+            <PostListItem listPosts={listPosts} handleClick={handleClick} />
+          )}
         </div>
         <div className="col-lg-4">
-          <HomeSideBar userPosts={userPosts} />
+          {loadingHomeSideBar ? <HomeSideBarSkeleton length={2} /> : <HomeSideBar userPosts={userPosts} />}
         </div>
       </div>
     </div>

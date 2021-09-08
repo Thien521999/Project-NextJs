@@ -1,6 +1,6 @@
 export const VN = {
   LANGUAGE: "Ngôn ngữ",
-  Category: "Danh mục",
+  Category: "DANH MỤC",
   Enter_keyword: "Nhập từ khóa ...",
   UPLOAD: "Tải lên",
   My_Account: "Tài khoản của tôi",
@@ -29,4 +29,5 @@ export const VN = {
   Do_not_have_an_account_Register_here: "Bạn chưa có tài khoản.Đăng ký ở đây",
   Create_an_account: "Tạo tài khoản",
   Already_have_an_account_Sign_in: "Bạn đã có sẵn tài khoản?Đăng nhập.",
+  COLOR: "Màu sắc",
 };

@@ -1,6 +1,6 @@
 export const EN = {
   LANGUAGE: "LANGUAGE",
-  Category: "Category",
+  Category: "CATEGORY",
   Enter_keyword: "Enter keyword ...",
   UPLOAD: "UPLOAD",
   My_Account: "MY ACCOUNT",
@@ -29,4 +29,5 @@ export const EN = {
   Do_not_have_an_account_Register_here: "Do not have an account.Register here",
   Create_an_account: "Create an account",
   Already_have_an_account_Sign_in: "Already have an account?Sign in.",
+  COLOR: "COLOR",
 };

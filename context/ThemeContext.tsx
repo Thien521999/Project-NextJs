@@ -15,7 +15,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       backgroundColor: "#ffffff",
     },
     dark: {
-      backgroundColor: "#204abd",
+      backgroundColor: "#98c1ea",
     },
   });
 

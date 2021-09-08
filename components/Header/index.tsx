@@ -1,5 +1,5 @@
 // libs
-import { alpha, AppBar, Button, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
+import { alpha, AppBar, IconButton, makeStyles, Menu, MenuItem, Toolbar } from "@material-ui/core";
 import BackupIcon from "@material-ui/icons/Backup";
 import ColorLensIcon from "@material-ui/icons/ColorLens";
 import LanguageIcon from "@material-ui/icons/Language";
@@ -15,6 +15,7 @@ import TitleHeader from "./mains/TitleHeader";
 import SearchHeader from "./mains/SearchHeader";
 import Upload from "./mains/Upload";
 import UserInformation from "./mains/UserInformation";
+import CategoryHeader from "./mains/CategoryHeader";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -125,22 +126,20 @@ const Header = () => {
         <LanguageDialog />
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show color" color="inherit">
           <ColorLensIcon />
         </IconButton>
         <Color />
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show upload" color="inherit">
           <BackupIcon />
         </IconButton>
         <Upload />
       </MenuItem>
       <MenuItem>
         <UserInformation />
-        <Button variant="contained" color="primary">
-          Profile
-        </Button>
+        PROFILE
       </MenuItem>
     </Menu>
   );
@@ -153,19 +152,13 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <TitleHeader />
-          {/* <CategoryHeader /> */}
+          <CategoryHeader />
           <SearchHeader />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <LanguageDialog />
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Color />
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Upload />
-            </IconButton>
+            <LanguageDialog />
+            <Color />
+            <Upload />
             <UserInformation />
           </div>
           <div className={classes.sectionMobile}>

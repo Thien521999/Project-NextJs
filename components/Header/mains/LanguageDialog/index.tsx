@@ -1,8 +1,8 @@
 // libs
 import { Box, Button, makeStyles, Menu, MenuItem } from "@material-ui/core";
 import React, { useContext, useState } from "react";
+// others
 import { LanguageContext } from "../../../../context/LanguageContext";
-// components
 
 const useStyles = makeStyles((theme) => ({
   menu: {
@@ -26,14 +26,7 @@ const LanguageDialog = () => {
 
   return (
     <>
-      <Button
-        className="link"
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleClickLanguage}
-        variant="contained"
-        color="primary"
-      >
+      <Button onClick={handleClickLanguage} color="inherit">
         {defaultLanguage.LANGUAGE}
       </Button>
 

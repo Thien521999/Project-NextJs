@@ -3,8 +3,9 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { LanguageContext } from "../../../../context/LanguageContext";
+import { Typography } from "@material-ui/core";
 // others
+import { LanguageContext } from "../../../../context/LanguageContext";
 import { getCategory } from "../../headerSlice";
 
 const CategoryHeader = () => {
@@ -23,32 +24,27 @@ const CategoryHeader = () => {
   }, [dispatch]);
 
   return (
-    <nav>
-      <ul className="ass1-header__menu">
-        <li>
-          <span
-            className="category"
-            // style={{ display: "flex", marginTop: "13px", alignItems: "center", justifyContent: "center" }}
-          >
-            {defaultLanguage.Category}
-          </span>
-          <div className="ass1-header__nav">
-            <div className="container">
-              <ul>
-                {listCategory.map((category) => (
-                  <li key={category?.id}>
-                    <Link href="/categories/[cateId]" as={`/categories/${category?.id}`}>
-                      <a>{category?.text}</a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="ass1-header__menu-transition" />
-          </div>
-        </li>
-      </ul>
-    </nav>
+    <div className="category">
+      <Typography color="inherit" style={{ marginLeft: "20px" }}>
+        <span style={{ color: "#fff", fontSize: "0.875rem", fontWeight: "bold" }}>{defaultLanguage.Category}</span>
+      </Typography>
+      <div className="ass1-header__nav">
+        <div className="container">
+          <ul>
+            {listCategory.map((category) => (
+              <li key={category?.id}>
+                <Link href="/categories/[cateId]" as={`/categories/${category?.id}`} passHref>
+                  <Typography variant="h6" style={{ cursor: "pointer", fontSize: "15px" }}>
+                    <span className="text-category">{category?.text}</span>
+                  </Typography>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="ass1-header__menu-transition" />
+      </div>
+    </div>
   );
 };
 
