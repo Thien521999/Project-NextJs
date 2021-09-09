@@ -18,7 +18,7 @@ const PostListItemSkeleton = ({ length }) => {
             <div className="ass1-section__content">
               <Skeleton variant="text" height={40} />
               <div className="ass1-section__image">
-                <Skeleton variant="rect" width={670} height={500} />
+                <Skeleton variant="rect" width="100%" height="100%" />
               </div>
             </div>
             <div className="ass1-section__footer">
