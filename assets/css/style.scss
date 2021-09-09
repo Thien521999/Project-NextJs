@@ -891,8 +891,8 @@ select.form-control:focus {
   margin-bottom: 30px;
   background-color: #ffffff;
   border-radius: 6px;
-  -webkit-box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 6px -2px #00000085;
+  box-shadow: 0px 2px 6px -2px #00000085;
 }
 .ass1-section__wrap {
   visibility: hidden;
@@ -1243,6 +1243,7 @@ select.form-control:focus {
 .ass1-section__list,
 .ass1-section__sidebar {
   margin-top: 44px;
+  margin-bottom: 20px;
 }
 .ass1-section.ass1-section__edit-post .ass1-section__content {
   padding-top: 0;
@@ -2271,6 +2272,18 @@ select.form-control:focus {
   left: 0;
   z-index: 10;
 }
+
+@keyframes header__category {
+  from {
+      opacity: 0;
+      transform: scale(0);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
 .ass1-header__nav {
   display: none;
   position: absolute;
@@ -2285,6 +2298,7 @@ select.form-control:focus {
   background-position: cover;
   border-top: solid 1px #e5e9ec;
   border-bottom: solid 1px #e6e9f1;
+  animation: header__category ease-in 0.7s ;
 }
 
 .ass1-header__nav::before {
@@ -2398,6 +2412,30 @@ select.form-control:focus {
   .ass1-header__menu,
   .ass1-header__search {
     margin-right: 30px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .ass1-header__nav .container {
+    padding: 0;
+  }
+
+  .ass1-header__nav .container ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    margin: 0;
+  }
+  .ass1-header__nav .container ul li{
+      padding: 8px;
+      margin:0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .category {
+    display: none;  
   }
 }
 
@@ -2630,4 +2668,21 @@ select.form-control:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 10px;
+}
+
+@media only screen and (max-width: 480px) {
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 6px;
+    font-size: 14px;
+  }
 }

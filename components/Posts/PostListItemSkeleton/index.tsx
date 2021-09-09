@@ -6,7 +6,7 @@ const PostListItemSkeleton = ({ length }) => {
   return (
     <>
       {Array.from(new Array(length)).map((x, index) => (
-        <div key={index}>
+        <div key={index} style={{ marginTop: "44px" }}>
           <div className="ass1-section">
             <div className="ass1-section__head">
               <Skeleton variant="circle" height={70} width={70} />

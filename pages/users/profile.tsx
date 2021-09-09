@@ -28,6 +28,7 @@ const UserProfile = () => {
     const action = updateProfile(values);
     const resultAction: any = await dispatch(action);
     const profile = unwrapResult(resultAction);
+
     enqueueSnackbar("Cập nhật thành công", { variant: "success" });
     router.push("/login");
   };

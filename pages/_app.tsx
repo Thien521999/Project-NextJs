@@ -1,5 +1,5 @@
 // libs
-import React, { useContext } from "react";
+import React from "react";
 import { AppProps } from "next/app"; //Thang này có san cua next js rùi
 import Head from "next/head";
 import Footer from "../components/Footer";
@@ -7,17 +7,17 @@ import { useEffect, useMemo, useState } from "react";
 import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 // components
 import Header from "../components/Header";
 // others
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/style.scss";
 import store, { persistor } from "../app/store";
-import { Button, LinearProgress, makeStyles } from "@material-ui/core";
+import { Fab, LinearProgress, makeStyles } from "@material-ui/core";
 import LanguageProvider from "../context/LanguageContext";
 import ThemeProvider, { ThemeContext } from "../context/ThemeContext";
+import ScrollTop from "../components/Header/mains/ScrollTop";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 const useStyles = makeStyles((theme) => ({
   progress: {
@@ -88,6 +88,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
                 <main>
                   <Component {...pageProps} />
                 </main>
+                <ScrollTop>
+                  <Fab style={{ backgroundColor: "#03DAC5" }} size="small" aria-label="scroll back to top">
+                    <KeyboardArrowUpIcon />
+                  </Fab>
+                </ScrollTop>
                 {!hiddenFooter && <Footer />}
               </div>
             </LanguageProvider>

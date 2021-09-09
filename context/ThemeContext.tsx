@@ -12,10 +12,10 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [defaultColor, setDefaultColor] = useState({
     isColor: true,
     light: {
-      backgroundColor: "#ffffff",
+      backgroundColor: "#fbfbfb",
     },
     dark: {
-      backgroundColor: "#98c1ea",
+      backgroundColor: "#d9dad7",
     },
   });
 

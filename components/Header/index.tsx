@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   toolbar: {
-    backgroundColor: "#1976d2",
+    backgroundColor: "#6200EE",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -145,37 +145,40 @@ const Header = () => {
   );
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer">
-            <MenuIcon />
-          </IconButton>
-          <TitleHeader />
-          <CategoryHeader />
-          <SearchHeader />
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <LanguageDialog />
-            <Color />
-            <Upload />
-            <UserInformation />
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
+    <>
+      <div className={classes.grow}>
+        <AppBar position="static">
+          <Toolbar className={classes.toolbar}>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer">
+              <MenuIcon />
             </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-    </div>
+            <TitleHeader />
+            <CategoryHeader />
+            <SearchHeader />
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <LanguageDialog />
+              <Color />
+              <Upload />
+              <UserInformation />
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+      </div>
+      <Toolbar id="back-to-top-anchor" style={{ position: "absolute" }} />
+    </>
   );
 };
 
