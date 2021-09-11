@@ -22,8 +22,11 @@ const PostDetailSideBar: React.FC<PropTypes> = ({ category, onChangeCategory, ha
   const handleCheck = (e: any) => {
     const isCheck = e.target.checked; // true
     const value = e.target.value;
+    console.log(value, isCheck);
+
     const findIdx = category.findIndex((cateId) => cateId === value);
     const isExisting = findIdx !== -1;
+
     if (!isExisting && isCheck) {
       // ko ton tai va check vao ô thì push vào
       onChangeCategory([...category, value]);

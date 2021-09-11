@@ -1381,12 +1381,17 @@ select.form-control:focus {
   font-size: 22px;
 }
 .ass1-aside__edit-post {
-  margin-top: 44px;
-  flex-direction: column;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  flex-direction: column;
+  margin: 44px 0 30px 0;
+  padding: 30px 30px 0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 2px 6px -2px #00000085;
+  box-shadow: 0px 2px 6px -2px #00000085;
 }
 .ass1-aside__edit-post > div {
   flex-wrap: wrap;
@@ -1487,6 +1492,11 @@ select.form-control:focus {
 @media only screen and (max-width: 768px) {
   .ass1-head-user__content {
     flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .ass1-aside__edit-post {
+    margin-top: 0;
   }
 }
 .ass1-head-user__image {

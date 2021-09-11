@@ -2,7 +2,7 @@
 import { Avatar, Box, Button, Container, CssBaseline, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { useSnackbar } from "notistack";
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
@@ -95,7 +95,7 @@ const UserProfileForm = ({ onSubmit }) => {
         "load",
         function () {
           // convert image file to base64 string
-          console.log("base-64", reader.result);
+          // console.log("base-64", reader.result);
           setObjFile({
             file,
             base64URL: reader.result as string,

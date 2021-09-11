@@ -8,9 +8,10 @@ type InputField = {
   name: any;
   label: any;
   disabled?: any;
+  defaultValue?: any;
 };
 
-const InputField: React.FC<InputField> = ({ form, name, label, disabled }) => {
+const InputField: React.FC<InputField> = ({ form, name, label, disabled, defaultValue }) => {
   const { errors } = form.formState;
   const hasError = errors[name];
 
@@ -29,6 +30,7 @@ const InputField: React.FC<InputField> = ({ form, name, label, disabled }) => {
           // de show error
           error={!!hasError}
           helperText={errors[name]?.message}
+          defaultValue="defaultValue"
         />
       )}
     />

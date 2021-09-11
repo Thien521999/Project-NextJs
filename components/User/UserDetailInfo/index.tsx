@@ -10,6 +10,7 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
+  CardMedia,
   makeStyles,
   Typography,
 } from "@material-ui/core";
@@ -20,7 +21,7 @@ import { LanguageContext } from "../../../context/LanguageContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: "20px",
+    margin: "20px 0 15px 0",
     width: "100%",
   },
   media: {
@@ -84,6 +85,7 @@ const UserDetailInfo: React.FC<PropsType> = ({ userDetailInfo, postCount }) => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
+        {/* <CardMedia className={classes.media} image="/images/cat-1634369_1920.jpg" title="Contemplative Reptile" /> */}
         <Avatar
           className={classes.avatar}
           alt={userDetailInfo.fullname}

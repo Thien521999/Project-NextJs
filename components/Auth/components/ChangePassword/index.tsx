@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { changePassword } from "../../userSlice";
 // components
 import ChangePasswordForm, { valueType } from "../ChangePasswordForm";
 // others
+import { changePassword } from "../../userSlice";
 
 const ChangePassword = () => {
   const router = useRouter();

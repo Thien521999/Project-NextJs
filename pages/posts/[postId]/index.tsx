@@ -9,7 +9,9 @@ import postApi from "../../../api/postApi";
 import userApi from "../../../api/userApi";
 // components
 import HomeSideBar from "../../../components/Posts/HomeSideBar";
+import HomeSideBarSkeleton from "../../../components/Posts/HomeSideBarSkeleton";
 import PostDetailContent from "../../../components/Posts/PostDetailContent";
+import PostListItemSkeleton from "../../../components/Posts/PostListItemSkeleton";
 import { Storekeys } from "../../../constants/Login";
 
 export type TypeCategory = {
@@ -43,6 +45,9 @@ const PostDetail: PostDetailProps = () => {
   const [detailPost, setDetailPost] = useState([]);
   const [categoryPost, setCategoryPost] = useState([]);
   const [commentPost, setCommentPost] = useState([]);
+
+  const [loadingListPost, setLoadingListPost] = useState(true);
+  const [loadingHomeSideBar, setLoadingHomeSideBar] = useState(true);
 
   const userId = JSON.parse(localStorage.getItem(Storekeys?.USER)).USERID;
   const router = useRouter();
@@ -81,6 +86,9 @@ const PostDetail: PostDetailProps = () => {
       setDetailPost(postDetailData);
       setCategoryPost(postDetailRes?.data?.data?.categories);
       setCommentPost(commentDetailRes?.data?.comments);
+
+      setLoadingListPost(false);
+      setLoadingHomeSideBar(false);
     })();
   }, []);
 
@@ -90,15 +98,19 @@ const PostDetail: PostDetailProps = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-8">
-          <PostDetailContent
-            detailPost={detailPost}
-            categoryPost={categoryPost}
-            commentPost={commentPost}
-            handleSetComment={handleSetComment}
-          />
+          {loadingListPost ? (
+            <PostListItemSkeleton length={3} />
+          ) : (
+            <PostDetailContent
+              detailPost={detailPost}
+              categoryPost={categoryPost}
+              commentPost={commentPost}
+              handleSetComment={handleSetComment}
+            />
+          )}
         </div>
         <div className="col-lg-4">
-          <HomeSideBar userPosts={userPosts} />
+          {loadingHomeSideBar ? <HomeSideBarSkeleton length={2} /> : <HomeSideBar userPosts={userPosts} />}
         </div>
       </div>
     </div>
