@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 function MyApp({ Component, pageProps, router }: AppProps) {
   const classes = useStyles();
   const pathname = router.pathname;
+
   const [loading, setLoading] = useState(false);
   // useMomo chay trc khi render(xem no nhu la 1 constructor) => tra ve 1 value
   const hiddenFooter = useMemo(() => {
@@ -50,8 +51,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     const currentRouter = pathname;
     return excluded.indexOf(currentRouter) !== -1;
   }, [pathname]);
-
-  // console.log("hiddenHeader", hiddenHeader);
 
   useEffect(() => {
     router.events.on("routeChangeStart", (url) => {

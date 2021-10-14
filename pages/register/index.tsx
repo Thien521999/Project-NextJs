@@ -7,11 +7,8 @@ import useAuthentication from "../../hooks/useAuthentication";
 
 const RegisterPage = () => {
   useAuthentication();
-  const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  return <Register closeDialog={handleClose} />;
+
+  return <Register />;
 };
 
 export default RegisterPage;

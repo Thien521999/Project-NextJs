@@ -13,7 +13,7 @@ export const VN = {
   See_more: "Xem thêm",
   Description: "Mô tả",
   Post_photos_from_meme: "Chế ảnh từ meme",
-  Post_pictures_from_the_computer: "Đăng ảnh từ máy tính",
+  Post_pictures: "Chọn ảnh",
   Post: "Đăng bài",
   Choose_category: "Chọn danh mục",
   Share_link: "Chia sẻ link",

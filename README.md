@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -32,3 +32,42 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# Server Side Rendering
+
+## getInitialProps
+    -Chạy ca phia Server va Client
+    -Lân load đau tien chaạ phía Server
+    -Lần đieu huong tiep theo(next/link, next/router) chay phia Client(SPA)
+
+    -Ưu điem :Tot cho SEO. Giam tai phia Server
+    -Nhuoc điem: De bi lô Endpoints ve data cua API.Neu uu tien o di dong hon, thiet bi co cau hinh yeu ->Khong nen dung
+
+## getServerSideProps -> Fetch data trong môi request
+- Chi chay phia Server
+- Load lan dau tien chay phia Server
+- Lần đieu huong tiep theo(next/link, next/router) van chay phia Server
+
+- Uu diem : Tot cho SEO.Che giau duoc Endpoints
+- Nhuoc diem: Toc do ung dung se cham hon voi nhung lan sau.Tang tai phia Server
+
+--------------------------------------------------
+
+# Static Generation
+
+## getStaticProps -> Fetch data tai thoi diem buid time
+ - Chi chay phia Server
+ - O moi truong Development(npm run dev): Giong hoan toan GetServerSideProps
+ - O moi truong Production:
+     + Data duoc goi mot lan duy nhat tai thoi diem build time(npm run build).
+     + Data khong bi thay doi trong suot thoi gian hoat dong(Neu khong Re Build Project)
+
+## getStaticPaths -> Xac dinh cu the các dynamic routes nao duoc pre-render phia server.
+- Chi chay phía server
+- Dung ket hop voi getStaticProps khi do lam dynamic routes
+
+
+## Ban than thang _app.tsx khong phai la 1 cai page
+
+ -->
