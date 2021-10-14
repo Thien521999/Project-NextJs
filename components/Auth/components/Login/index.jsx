@@ -14,7 +14,7 @@ Login.propTypes = {
   closeDialog: PropTypes.func,
 };
 
-function Login({ closeDialog }) {
+function Login() {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
@@ -30,8 +30,8 @@ function Login({ closeDialog }) {
 
       //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này
       //close dialog
-      if (!closeDialog) return;
-      closeDialog();
+      // if (!closeDialog) return;
+      // closeDialog();
       if (user?.status === 200) {
         router.push("/");
       } else {

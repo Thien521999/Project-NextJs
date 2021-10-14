@@ -59,7 +59,7 @@ const PhotoField: React.FC<PhotoFieldProps> = ({ form, name, disabled }) => {
       />
       <label htmlFor="contained-button-file">
         <Button variant="contained" color="primary" component="span" style={{ backgroundColor: "#03DAC5" }}>
-          {defaultLanguage.Post_pictures_from_the_computer}
+          {defaultLanguage.Post_pictures}
         </Button>
       </label>
     </div>

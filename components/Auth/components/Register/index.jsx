@@ -9,11 +9,7 @@ import { useDispatch } from "react-redux";
 import RegisterForm from "../RegisterForm";
 import { register } from "../../userSlice";
 
-Register.propTypes = {
-  closeDialog: PropTypes.func,
-};
-
-function Register({ closeDialog }) {
+function Register() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
@@ -31,11 +27,11 @@ function Register({ closeDialog }) {
       // console.log('New user:', user);
 
       //close dialog khi dang ky thanh cong
-      if (closeDialog) closeDialog();
+      // if (closeDialog) closeDialog();
 
       //show thong báo khi dang ky thanh cong
       if (user?.status === 200) {
-        router.push("/");
+        router.push("/login");
       } else {
         enqueueSnackbar(user?.error, { variant: "error" });
       }

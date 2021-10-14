@@ -13,7 +13,7 @@ export const EN = {
   See_more: "See more",
   Description: "Description",
   Post_photos_from_meme: "Post photos from meme",
-  Post_pictures_from_the_computer: "Post pictures from the computer",
+  Post_pictures: "Choose picture",
   Post: "Post",
   Choose_category: "Choose category",
   Share_link: "Share link",

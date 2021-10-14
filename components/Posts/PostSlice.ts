@@ -21,7 +21,7 @@ export const editPost = createAsyncThunk("posts/editPost", async (payload:any) =
 const postSlice = createSlice({
   name: "posts",
   initialState: {
-    postData: {},
+    postData: {}, 
   },
   reducers: {},
   extraReducers: (builder) => {

@@ -22,6 +22,7 @@ const PostListItem: React.FC<PropsType> = ({ listPosts, handleClick }) => {
   const classes = useStyles();
   const pagesize = 3;
   const [currPage, setCurrPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const handleClickLoadMore = () => {
     (async () => {
